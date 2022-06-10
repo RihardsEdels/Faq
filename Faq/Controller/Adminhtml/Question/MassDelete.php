@@ -7,6 +7,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Backend\Model\View\Result\Redirect;
 
 /**
  * Class MassDelete
@@ -19,7 +20,6 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
      * @see _isAllowed()
      */
     const ADMIN_RESOURCE = 'Magebit_Faq::question';
-
     /**
      * @var Filter
      */
@@ -48,7 +48,7 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
      * @return \Magento\Backend\Model\View\Result\Redirect
      * @throws \Magento\Framework\Exception\LocalizedException|\Exception
      */
-    public function execute()
+    public function execute():Redirect
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
@@ -58,8 +58,10 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
         }
 
         $this->messageManager->addSuccessMessage(__('A total of %1 questions(s) have been deleted.', $collectionSize));
+
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        
         return $resultRedirect->setPath('*/*/');
     }
 }

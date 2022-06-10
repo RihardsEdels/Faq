@@ -4,6 +4,7 @@ namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\Data;
 use Magebit\Faq\Api\QuestionManagementInterface;
+
 class QuestionManagement extends Question implements QuestionManagementInterface
 {
     protected function _construct()
@@ -11,12 +12,12 @@ class QuestionManagement extends Question implements QuestionManagementInterface
         $this->_init(\Magebit\Faq\Model\ResourceModel\Question::class);
     }
 
-    public function enableQuestion(Data\QuestionInterface $question)
+    public function enableQuestion(Data\QuestionInterface $question):Question
     {
         return $question->setStatus(true);
     }
 
-    public function disableQuestion(Data\QuestionInterface $question)
+    public function disableQuestion(Data\QuestionInterface $question):Question
     {
         return $question->setStatus(false);
     }

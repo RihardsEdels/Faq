@@ -11,12 +11,13 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magebit\Faq\Model\ResourceModel\Question as ResourceQuestion;
+
+
 class QuestionRepository implements QuestionRepositoryInterface
 {
     private $resource;
     private $collectionFactory;
     private $questionFactory;
-    private $hydrator;
 
     public function __construct(
         ResourceQuestion $resource,
@@ -30,7 +31,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         $this->hydrator = $hydrator ?? ObjectManager::getInstance()->get(HydratorInterface::class);
     }
 
-    public function getById($questionId):mixed
+    public function getById($questionId):Question
     {
         $question = $this->questionFactory->create();
         $this->resource->load($question, $questionId);
@@ -40,7 +41,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         return $question;
     }
 
-    public function delete(Data\QuestionInterface $question):mixed
+    public function delete(Data\QuestionInterface $question):bool
     {
         try {
             $this->resource->delete($question);
@@ -50,7 +51,8 @@ class QuestionRepository implements QuestionRepositoryInterface
         return true;
     }
 
-    public function save(Data\QuestionInterface $question):mixed
+
+    public function save(Data\QuestionInterface $question):Question
     {
         try {
             $this->resource->save($question);
@@ -65,7 +67,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         return $this->collectionFactory->create()->getItems();
     }
 
-    public function deleteById($questionID):mixed
+    public function deleteById($questionID):bool
     {
         return $this->delete($this->getById($questionID));
     }

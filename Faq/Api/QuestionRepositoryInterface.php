@@ -21,7 +21,7 @@ interface QuestionRepositoryInterface
 
     /**
      * get List
-     * @return \Magebit\Faq\Api\Data\QuestionInterface
+     * @return \Magebit\Faq\Api\Data\QuestionInterface[]
      */
     public function getList();
 

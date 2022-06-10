@@ -5,19 +5,29 @@ namespace Magebit\Faq\Model;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+
 {
+
     protected $loadedData;
 
     public function __construct(
+
         $name,
+
         $primaryFieldName,
+
         $requestFieldName,
+
         CollectionFactory $CollectionFactory,
+
         array $meta = [],
+
         array $data = []
 
     ) {
+
         $this->collection = $CollectionFactory->create();
+
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 

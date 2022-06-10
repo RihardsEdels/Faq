@@ -1,6 +1,7 @@
 <?php
 
 namespace Magebit\Faq\Api\Data;
+
 /**
  * Interface QuestionInterface
  * @package Magebit\Faq\Api\Data
@@ -23,6 +24,7 @@ interface QuestionInterface
      * @return int|null
      */
     public function getId();
+
     /**
      * Get Question
      *
@@ -60,6 +62,7 @@ interface QuestionInterface
     public function getUpdateTime();
 
     /*     Setters   */
+
     /**
      * Set Question
      *

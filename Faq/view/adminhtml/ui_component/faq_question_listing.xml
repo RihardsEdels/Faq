@@ -74,6 +74,7 @@
             </filterSelect>
         </filters>
 
+
         <massaction name="listing_massaction">
             <action name="delete">
                 <settings>
@@ -111,6 +112,7 @@
                 </settings>
             </action>
         </massaction>
+
 
         <paging name="listing_paging" />
     </listingToolbar>

@@ -7,9 +7,8 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
-/**
- * Class MassDisable
- */
+use Magento\Backend\Model\View\Result\Redirect;
+
 class MassDisable extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     /**
@@ -47,13 +46,12 @@ class MassDisable extends \Magento\Backend\App\Action implements HttpPostActionI
      * @return \Magento\Backend\Model\View\Result\Redirect
      * @throws \Magento\Framework\Exception\LocalizedException|\Exception
      */
-
-    public function execute()
+    public function execute():Redirect
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
-        
+
         foreach ($collection as $item) {
-            $item->setStatus(false);
+            $item->setStatus(0);
             $item->save();
         }
 

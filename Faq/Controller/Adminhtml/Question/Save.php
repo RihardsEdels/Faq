@@ -39,11 +39,10 @@ class Save extends \Magento\Backend\App\Action
             ]);
 
             $saveData = $model->save();
-
             if ($saveData) {
                 $this->messageManager->addSuccess(__('FAQ added successfully !'));
             }
-            
+
         } catch (\Exception $e) {
             $this->messageManager->addError(__($e->getMessage()));
         }
